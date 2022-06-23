@@ -14,9 +14,9 @@ import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   
 // Add Firebase products that you want to use
-import { auth } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js'
+import { getAuth, onAuthStateChanged  } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js'
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-database.js";
-import { firestore } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js'
+import { getFirestore  } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js'
 
 const firebaseConfig = {
 
