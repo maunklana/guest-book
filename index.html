@@ -63,12 +63,11 @@
     </script>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script async defer src="https://formfacade.com/include/110524864142994372677/form/1FAIpQLSfxLRG2FL7Rr1lsRcwV55iD0xdM3YhDgAEsvZKXcKw4R-i93g/bootstrap.js?div=ff-compose"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js" integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script>
-	$("#guestbooks-datalist").html("Loading...");
+	$("#guestbooks-datalist").html('<div class="spinner-border text-light" role="status"><span class="visually-hidden">Loading...</span></div>');
 	$.getJSON( 'https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=getGuestBook&vc1ycvwbf6zuqyn1cf=true' ).done((response) => {
 		if(response.statusCode == 1){
 			$("#guestbooks-datalist").html("");
