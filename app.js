@@ -1,5 +1,5 @@
 $(function() {
-	if(typeof kepada == 'undefined' && typeof group == 'undefined'){
+	if(typeof googleCredentials == 'undefined' && typeof googleCredentials == 'undefined'){
 		swallAskLogin();
 	}else{
 		showGuestBooks();
