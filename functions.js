@@ -11,6 +11,7 @@ function parseJwt (token) {
 const swallAskLogin = function(functiontoCall){
 	Swal.fire({
 		html: '<div class="text-light pb-2"><h1><i class="bi bi-person-bounding-box"></i></h1>Kamu harus login untuk mengakses halaman ini!</div><div id="googleLoginButton"></div>',
+		width: "auto",
 		color: "white",
 		showCancelButton: false,
 		confirmButtonText: 'Lanjut',
@@ -55,6 +56,8 @@ function handleCredentialResponse(response) {
 
 const showGuestBooks = function(){
 	googleCredentials = localStorage.googleCredentials;
+	
+	Swal.close();
 	
 	$('.xhidden').each(function() {
 		$(this).addClass('animate__animated animate__slideInUp');
