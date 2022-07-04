@@ -1,115 +1,102 @@
 <!doctype html>
 <html lang="en">
 	<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	
-	<title>Guest Book of Wedding Asep & Nabila</title>
-	
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		
+		<title>Guest Book of Wedding Asep & Nabila</title>
+		
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
+		<style>
+		.xhidden{display: none;}
+		</style>
 	</head>
 	<body>
-	
-	<div id="googleLoginButton"></div>
-	
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm text-center mt-3">
-				<h6>Guest Book of Wedding</h6>
-				<h5>Asep & Nabila</h5>
-			</div>
-		</div>
-	</div>
-	
-	<nav style="position:fixed;" class="xhidden navbar navbar-expand fixed-bottom">
-		<div class="container-fluid text-center">
-			<div class="col-6 me-1">
-					<div class="d-grid gap-2">
-						<button type="button" class="btn btn-primary" data-fancybox="dialog" data-src="#dialog-add-guestbooks"><i class="bi bi-person-plus-fill"></i> Tambah tamu</button>
-					</div>
-				</div>
-				<div class="col-6 ms-1">
-					<div class="d-grid gap-2">
-						<button type="button" class="btn btn-primary" data-fancybox="dialog" data-src="#dialog-scan-guestbooks"><i class="bi bi-qr-code-scan"></i> Scan tamu</button>
-					</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm text-center mt-3">
+					<h6>Guest Book of Wedding</h6>
+					<h5>Asep & Nabila</h5>
 				</div>
 			</div>
 		</div>
-	</nav>
-	
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm">
-				<table class="table table-sm table-responsive table-striped">
-				  <thead>
-						<tr>
-							<th scope="col">Waktu</th>
-							<th scope="col">Nama</th>
-							<th scope="col">Alamat/Kolega</th>
-							<th scope="col">Keterangan</th>
-						</tr>
-					</thead>
-					<tbody id="guestbooks-datalist" class="table-group-divider">
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div id="table-loader" class="row">
-			<div class="col-sm">
-				<div class="d-flex justify-content-center"><div class="spinner-border text-light" role="status"><span class="visually-hidden">Loading...</span></div></div>
-			</div>
-		</div>
-	</div>
-	<!-- Dialog Contents -->
-	<div id="dialog-add-guestbooks" style="display:none;max-width:500px;">
-		<div id="ff-compose"></div>
-	</div>
-	
-	<div id="dialog-scan-guestbooks" style="display:none;max-width:500px;">
-		<div id="ff-compose"></div>
-	</div>
-	
-	<script src="https://accounts.google.com/gsi/client" async defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-jose/0.1.0/jose.min.js" integrity="sha512-VsINgSrJocpVF3eMhd0x/4A5svSlAhuScjr3F/D2NqmNwdJA+vkiYlWe1Nh1uOnVMqubzFvwk3QRRAhlYocFkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script>
-        function handleCredentialResponse(response) {
-			console.log("Encoded JWT ID token: " + response.credential);
-			
-			const responsePayload = parseJwt(response.credential);
-			console.log("ID: " + responsePayload.sub);
-			console.log('Full Name: ' + responsePayload.name);
-			console.log('Given Name: ' + responsePayload.given_name);
-			console.log('Family Name: ' + responsePayload.family_name);
-			console.log("Image URL: " + responsePayload.picture);
-			console.log("Email: " + responsePayload.email);
-        }
 		
-        window.onload = function () {
-          google.accounts.id.initialize({
-            client_id: "12760851327-a1i1d9s9gjg3d8fnvj0t2hken7gpter1.apps.googleusercontent.com",
-            callback: handleCredentialResponse
-          });
-          google.accounts.id.renderButton(
-            document.getElementById("googleLoginButton"),
-            { theme: "outline", size: "large" }  // customization attributes
-          );
-          google.accounts.id.prompt(); // also display the One Tap dialog
-        }
-    </script>
+		<nav style="position:fixed;" class="xhidden navbar navbar-expand fixed-bottom">
+			<div class="container-fluid text-center">
+				<div class="col-6 me-1">
+						<div class="d-grid gap-2">
+							<button type="button" class="btn btn-primary" data-fancybox="dialog" data-src="#dialog-add-guestbooks"><i class="bi bi-person-plus-fill"></i> Tambah tamu</button>
+						</div>
+					</div>
+					<div class="col-6 ms-1">
+						<div class="d-grid gap-2">
+							<button type="button" class="btn btn-primary" data-fancybox="dialog" data-src="#dialog-scan-guestbooks"><i class="bi bi-qr-code-scan"></i> Scan tamu</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="xhidden container-fluid">
+			<div class="row">
+				<div class="col-sm">
+					<table class="table table-sm table-responsive table-striped">
+					  <thead>
+							<tr>
+								<th scope="col">Waktu</th>
+								<th scope="col">Nama</th>
+								<th scope="col">Alamat/Kolega</th>
+								<th scope="col">Keterangan</th>
+							</tr>
+						</thead>
+						<tbody id="guestbooks-datalist" class="table-group-divider">
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div id="table-loader" class="row">
+				<div class="col-sm">
+					<div class="d-flex justify-content-center"><div class="spinner-border text-light" role="status"><span class="visually-hidden">Loading...</span></div></div>
+				</div>
+			</div>
+		</div>
+		<!-- Dialog Contents -->
+		<div id="dialog-add-guestbooks" style="display:none;max-width:500px;">
+			<div id="ff-compose"></div>
+		</div>
+		
+		<div id="dialog-scan-guestbooks" style="display:none;max-width:500px;">
+			<div id="ff-compose"></div>
+		</div>
+		
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="https://accounts.google.com/gsi/client" async defer></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-jose/0.1.0/jose.min.js" integrity="sha512-VsINgSrJocpVF3eMhd0x/4A5svSlAhuScjr3F/D2NqmNwdJA+vkiYlWe1Nh1uOnVMqubzFvwk3QRRAhlYocFkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js" integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="functions.js"></script>
+		<script>
+		if ("virtualKeyboard" in navigator) {
+			navigator.virtualKeyboard.overlaysContent = true;
+		}
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js" integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="functions.js"></script>
-	<script src="app.js"></script>
+		let googleCredentials;
+
+		if(typeof localStorage.googleCredentials != "undefined" && localStorage.googleCredentials != ''){
+			googleCredentials = localStorage.googleCredentials;
+		}
+		
+		</script>
+		<script src="app.js"></script>
 	</body>
 </html>
