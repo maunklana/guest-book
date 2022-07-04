@@ -10,7 +10,7 @@ function parseJwt (token) {
 
 const swallAskLogin = function(functiontoCall){
 	Swal.fire({
-		html: '<div class="text-light pb-2"><h1><i class="bi bi-person-bounding-box"></i></h1>Kamu harus login untuk mengakses halaman ini!</div><div id="googleLoginButton"></div>',
+		html: '<div class="text-light pb-2"><h1><i class="bi bi-person-bounding-box"></i></h1>Kamu harus login untuk mengakses halaman ini!</div><div id="googleLoginButton" data-login_uri="https://maunklana.github.io/guest-book/"></div>',
 		width: "auto",
 		color: "white",
 		showCancelButton: false,
