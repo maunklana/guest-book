@@ -40,22 +40,21 @@ const swallAskLogin = function(functiontoCall){
 }
 
 function handleCredentialResponse(response) {
-	console.log("Encoded JWT ID token: " + response.credential);
-	
-	const responsePayload = parseJwt(response.credential);
-	console.log("ID: " + responsePayload.sub);
-	console.log('Full Name: ' + responsePayload.name);
-	console.log('Given Name: ' + responsePayload.given_name);
-	console.log('Family Name: ' + responsePayload.family_name);
-	console.log("Image URL: " + responsePayload.picture);
-	console.log("Email: " + responsePayload.email);
-	
+	console.log("Encoded JWT ID token: " + response.credential);	
 	localStorage.googleCredentials = response.credential;
 	showGuestBooks();
 }
 
 const showGuestBooks = function(){
 	googleCredentials = localStorage.googleCredentials;
+	
+	const responsePayload = parseJwt(googleCredentials);
+	console.log("ID: " + responsePayload.sub);
+	console.log('Full Name: ' + responsePayload.name);
+	console.log('Given Name: ' + responsePayload.given_name);
+	console.log('Family Name: ' + responsePayload.family_name);
+	console.log("Image URL: " + responsePayload.picture);
+	console.log("Email: " + responsePayload.email);
 	
 	Swal.close();
 	
