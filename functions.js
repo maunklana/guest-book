@@ -10,14 +10,29 @@ function parseJwt (token) {
 
 const swallLoginPrompt = function(){
 	Swal.fire({
-		html: '<div class="text-light pb-2"><h1><i class="bi bi-person-bounding-box"></i></h1>Kamu harus login untuk mengakses halaman ini!</div><div id="googleLoginButton"></div>',
+		html: `	
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-12 text-center mt-3 mb-2">
+							<small>Guest Book</small>
+							<h1 class="asepnabila mb-0">Asep<span style="font-size: 1.5rem;margin-left: .4rem;">&amp;</span>Nabila</h1>
+							<small>Wedding's</small>
+						</div>
+				</div>
+				<div class="text-light pb-2">
+					<h1><i class="bi bi-person-bounding-box"></i></h1>
+					<small>Kamu harus login untuk mengakses halaman ini!</small>
+				</div>
+				<div id="googleLoginButton"></div>`,
 		width: "auto",
 		color: "white",
 		showCancelButton: false,
 		background: 'transparent',
 		backdrop: `
-		linear-gradient(rgba(255, 255, 255, 0.5), rgba(100, 100, 100, 1))
-		`,
+			linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+			url("https://asep-nabila.github.io/img/bg-landing.jpg")
+			no-repeat center/auto 100%
+			`,
 		allowOutsideClick: false,
 		allowEscapeKey: false,
 		showConfirmButton: false,
@@ -32,15 +47,30 @@ const swallLoginPrompt = function(){
 }
 
 function handleGoogleCredentialResponse(response) {
-	console.log("Encoded JWT ID token: " + response.credential);	
-	localStorage.googleCredentials = response.credential;
-	
-	googleCredentials = localStorage.googleCredentials;
-	if(typeof googleCredentials == 'undefined' || googleCredentials == ''){
-		swallLoginPrompt();
-	}else{
-		showGuestBooks();
-	}
+	console.log("Encoded JWT ID token: " + response.credential);
+	let decodeGoogleCredential = parseJwt(response.credential);
+	$.getJSON(`https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=checkAllowedLoggedinEmail&vc1ycvwbf6zuqyn1cf=true&loggedinemail=${responsePayload.email}`).done((response) => {
+		if(response.statusCode == 1){
+			localStorage.googleCredentials = response.credential;
+			
+			googleCredentials = localStorage.googleCredentials;
+			if(typeof googleCredentials == 'undefined' || googleCredentials == ''){
+				swallLoginPrompt();
+			}else{
+				showGuestBooks();
+			}
+		}else{
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: response.statusText,
+			}).then((result) => {
+				if (result.isConfirmed) {
+					location.reload();
+				}
+			});
+		}
+	});
 }
 
 const showGuestBooks = function(){

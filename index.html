@@ -12,19 +12,36 @@
 		
 		<title>Guest Book of Wedding Asep & Nabila</title>
 		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,500&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet"> 
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
 		<style>
-		.xhidden{visibility: hidden;}
+		.xhidden{
+			visibility: hidden;
+		}
+		.asepnabila{
+			font-family: 'Playball', cursive;
+		}
 		</style>
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div class="xhidden container-fluid">
 			<div class="row">
-				<div class="col-sm text-center mt-3">
-					<small>Guest Book of Wedding</small>
-					<h5>Asep & Nabila</h5>
+				<div class="col-sm-2 text-center mt-3">
+					<button type="button" class="btn btn-primary" data-fancybox="" data-src="#dialog-scan-guestbooks"><i class="bi bi-qr-code"></i> Show QR Code</button>
+				</div>
+				<div class="col-sm-8 text-center mt-3">
+					<small>Guest Book</small>
+					<h5 class="asepnabila">Asep<span style="font-size: 1.5rem;margin-left: .4rem;">&amp;</span>Nabila</h5>
+					<small>Wedding's</small>
+				</div>
+				<div class="col-sm-2 text-center mt-3">
 				</div>
 			</div>
 		</div>
