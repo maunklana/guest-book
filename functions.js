@@ -93,7 +93,7 @@ const showGuestBooks = function(){
 		console.log("Email: " + responsePayload.email);
 		
 		$("#loggedin-avatar").attr("src", responsePayload.picture);
-		$("#loggedin-name").text(responsePayload.name);
+		$("#loggedin-name").text(responsePayload.given_name);
 		
 		$('.xhidden').each(function() {
 			$(this).addClass('animate__animated animate__slideInUp');
