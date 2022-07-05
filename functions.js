@@ -8,9 +8,9 @@ function parseJwt (token) {
     return JSON.parse(jsonPayload);
 };
 
-const swallAskLogin = function(functiontoCall){
+const swallAskLogin = function(){
 	Swal.fire({
-		html: '<div class="text-light pb-2"><h1><i class="bi bi-person-bounding-box"></i></h1>Kamu harus login untuk mengakses halaman ini!</div><div id="googleLoginButton" data-login_uri="https://maunklana.github.io"></div>',
+		html: '<div class="text-light pb-2"><h1><i class="bi bi-person-bounding-box"></i></h1>Kamu harus login untuk mengakses halaman ini!</div><div id="googleLoginButton"></div>',
 		width: "auto",
 		color: "white",
 		showCancelButton: false,
@@ -26,7 +26,7 @@ const swallAskLogin = function(functiontoCall){
 		didOpen: () => {
 			google.accounts.id.initialize({
 				client_id: "12760851327-a1i1d9s9gjg3d8fnvj0t2hken7gpter1.apps.googleusercontent.com",
-				callback: handleCredentialResponse
+				callback: handleGoogleCredentialResponse
 			});
 			google.accounts.id.renderButton(
 				document.getElementById("googleLoginButton"),
@@ -34,19 +34,22 @@ const swallAskLogin = function(functiontoCall){
 			);
 			google.accounts.id.prompt(); // also display the One Tap dialog
 		}
-	}).then((result) => {
-		showGuestBooks();
 	});
 }
 
-function handleCredentialResponse(response) {
+function handleGoogleCredentialResponse(response) {
 	console.log("Encoded JWT ID token: " + response.credential);	
 	localStorage.googleCredentials = response.credential;
-	showGuestBooks();
+	
+	googleCredentials = localStorage.googleCredentials;
+	if(typeof googleCredentials == 'undefined' || googleCredentials == ''){
+		swallAskLogin();
+	}else{
+		showGuestBooks();
+	}
 }
 
 const showGuestBooks = function(){
-	googleCredentials = localStorage.googleCredentials;
 	
 	const responsePayload = parseJwt(googleCredentials);
 	console.log("ID: " + responsePayload.sub);
