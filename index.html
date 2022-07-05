@@ -38,8 +38,8 @@
 	<body>
 		<div class="xhidden container-fluid">
 			<div class="row">
-				<div class="col-sm-8 text-center mt-3" style="white-space: nowrap;">
-					<small>Guest Book</small> <h5 class="asepnabila">Asep<span style="font-size: 1.5rem;margin-left: .4rem;">&amp;</span>Nabila</h5> <small>Wedding's</small>
+				<div class="col-sm-8 text-start mt-3" style="white-space: nowrap;">
+					<small>Guest Book</small> <span class="asepnabila" style="font-size: 1.25rem;">Asep<span style="font-size: 1.5rem;margin-left: .4rem;">&amp;</span>Nabila</span> <small>Wedding's</small>
 				</div>
 				<div class="col-sm-4 text-end mt-3">
 					<img id="loggedin-avatar" class="avatar" src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar"> <small id="loggedin-name" class></small> <button title="logout" id="loggedin-signout" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-box-arrow-right"></i></button>
@@ -91,7 +91,12 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- Dialog Contents -->
+		<div id="dialog-qrcode-show" style="display:none;max-width:500px;">
+			<div id="ff-compose"></div>
+		</div>
+		
 		<div id="dialog-add-guestbooks" style="display:none;max-width:500px;">
 			<div id="ff-compose"></div>
 		</div>
