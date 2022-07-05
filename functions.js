@@ -134,3 +134,10 @@ const loadGuestBooks = function(){
 		}
 	});
 }
+
+const googleCredentialsSignout = function(){
+	google.accounts.id.disableAutoSelect();
+	delete localStorage.googleCredentials;
+	
+	location.reload();
+}

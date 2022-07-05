@@ -9,4 +9,21 @@ $(function() {
 	}else{
 		showGuestBooks();
 	}
+	
+	$("#loggedin-signout").click(function(e){
+		e.preventDefault();
+		Swal.fire({
+		title: 'Kamu yakin ingin logout?',
+			showCancelButton: true,
+			confirmButtonText: 'Ya, logout',
+			cancelButtonText: 'Tidak',
+			reverseButtons: true
+		}).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				googleCredentialsSignout();
+			}
+		});
+		
+	});
 });
