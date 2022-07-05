@@ -92,7 +92,7 @@ const showGuestBooks = function(){
 		console.log("Image URL: " + responsePayload.picture);
 		console.log("Email: " + responsePayload.email);
 		
-		$("#loggedin-avatar").attr("src", esponsePayload.picture);
+		$("#loggedin-avatar").attr("src", responsePayload.picture);
 		$("#loggedin-name").text(responsePayload.name);
 		
 		$('.xhidden').each(function() {
