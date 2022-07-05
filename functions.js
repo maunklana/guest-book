@@ -8,14 +8,12 @@ function parseJwt (token) {
     return JSON.parse(jsonPayload);
 };
 
-const swallAskLogin = function(){
+const swallLoginPrompt = function(){
 	Swal.fire({
 		html: '<div class="text-light pb-2"><h1><i class="bi bi-person-bounding-box"></i></h1>Kamu harus login untuk mengakses halaman ini!</div><div id="googleLoginButton"></div>',
 		width: "auto",
 		color: "white",
 		showCancelButton: false,
-		confirmButtonText: 'Lanjut',
-		confirmButtonColor: '#991188', //Warna kesukaan Nabila
 		background: 'transparent',
 		backdrop: `
 		linear-gradient(rgba(255, 255, 255, 0.5), rgba(100, 100, 100, 1))
@@ -24,10 +22,6 @@ const swallAskLogin = function(){
 		allowEscapeKey: false,
 		showConfirmButton: false,
 		didOpen: () => {
-			google.accounts.id.initialize({
-				client_id: "12760851327-a1i1d9s9gjg3d8fnvj0t2hken7gpter1.apps.googleusercontent.com",
-				callback: handleGoogleCredentialResponse
-			});
 			google.accounts.id.renderButton(
 				document.getElementById("googleLoginButton"),
 				{ theme: "outline", size: "large" }  // customization attributes
@@ -43,7 +37,7 @@ function handleGoogleCredentialResponse(response) {
 	
 	googleCredentials = localStorage.googleCredentials;
 	if(typeof googleCredentials == 'undefined' || googleCredentials == ''){
-		swallAskLogin();
+		swallLoginPrompt();
 	}else{
 		showGuestBooks();
 	}
