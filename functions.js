@@ -46,12 +46,15 @@ const swallLoginPrompt = function(){
 	});
 }
 
+let googleResponseCredential;
 function handleGoogleCredentialResponse(response) {
 	console.log("Encoded JWT ID token: " + response.credential);
-	let decodeGoogleCredential = parseJwt(response.credential);
+	googleResponseCredential = response.credential;
+	
+	let decodeGoogleCredential = parseJwt(googleResponseCredential);
 	$.getJSON(`https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=checkAllowedLoggedinEmail&vc1ycvwbf6zuqyn1cf=true&loggedinemail=${decodeGoogleCredential.email}`).done((response) => {
 		if(response.statusCode == 1){
-			localStorage.googleCredentials = response.credential;
+			localStorage.googleCredentials = googleResponseCredential;
 			
 			googleCredentials = localStorage.googleCredentials;
 			if(typeof googleCredentials == 'undefined' || googleCredentials == ''){
