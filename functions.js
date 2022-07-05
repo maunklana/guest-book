@@ -44,23 +44,26 @@ function handleGoogleCredentialResponse(response) {
 }
 
 const showGuestBooks = function(){
-	
-	const responsePayload = parseJwt(googleCredentials);
-	console.log("ID: " + responsePayload.sub);
-	console.log('Full Name: ' + responsePayload.name);
-	console.log('Given Name: ' + responsePayload.given_name);
-	console.log('Family Name: ' + responsePayload.family_name);
-	console.log("Image URL: " + responsePayload.picture);
-	console.log("Email: " + responsePayload.email);
-	
 	Swal.close();
 	
-	$('.xhidden').each(function() {
-		$(this).addClass('animate__animated animate__slideInUp');
-		$(this).css('visibility', 'visible');
-	});
-	
-	loadGuestBooks();
+	if(typeof googleCredentials == 'undefined' || googleCredentials == ''){
+		swallLoginPrompt();
+	}else{
+		const responsePayload = parseJwt(googleCredentials);
+		console.log("ID: " + responsePayload.sub);
+		console.log('Full Name: ' + responsePayload.name);
+		console.log('Given Name: ' + responsePayload.given_name);
+		console.log('Family Name: ' + responsePayload.family_name);
+		console.log("Image URL: " + responsePayload.picture);
+		console.log("Email: " + responsePayload.email);
+		
+		$('.xhidden').each(function() {
+			$(this).addClass('animate__animated animate__slideInUp');
+			$(this).css('visibility', 'visible');
+		});
+		
+		loadGuestBooks();
+	}
 }
 
 const loadGuestBooks = function(){
