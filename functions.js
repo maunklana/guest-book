@@ -19,23 +19,21 @@ const swallLoginPrompt = function(){
 							<small>Wedding's</small>
 						</div>
 				</div>
-				<div class="text-light pb-2">
-					<h1><i class="bi bi-person-bounding-box"></i></h1>
+				<div class="text-muted pb-2">
 					<small>Kamu harus login untuk mengakses halaman ini!</small>
 				</div>
 				<div id="googleLoginButton"></div>`,
-		width: "auto",
-		color: "white",
+		width: 'auto',
+		height: 'auto',
 		showCancelButton: false,
-		background: 'transparent',
-		backdrop: `
-			linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-			url("https://asep-nabila.github.io/img/bg-landing.jpg")
-			no-repeat center/auto 100%
-			`,
+		background: '#FFFAFF',
+		backdrop: '#730f66',
 		allowOutsideClick: false,
 		allowEscapeKey: false,
 		showConfirmButton: false,
+		customClass : {
+			popup: 'close-envelope-popup'
+		},
 		didOpen: () => {
 			google.accounts.id.renderButton(
 				document.getElementById("googleLoginButton"),
