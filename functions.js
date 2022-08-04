@@ -162,7 +162,7 @@ const loadGuestBooks = function(){
 						// split line into columns
 						let columns = ourrow.split(",");
 						
-						$.each(columns, function( index, value ) {
+						$.each(columns.slice(0, 3), function( index, value ) {
 							guestbookrows.append(`<td>${value}</td>'`);
 						});
 						
