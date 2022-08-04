@@ -104,8 +104,10 @@ const showGuestBooks = function(){
 			$("#addguestbookmanual").submit(function(e){
 				e.preventDefault();
 				
+				decodeGoogleCredential = parseJwt(googleCredentials);
+				
 				var $requestSettings = {
-					"url": "https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=insertGuestToBook",
+					"url": `https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=insertGuestToBook&loggedinemail=${decodeGoogleCredential.email}`,
 					"method": "POST",
 					"timeout": 0,
 					"headers": {
