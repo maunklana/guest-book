@@ -127,6 +127,8 @@ const loadGuestBooks = function(){
 				}
 				rownum++;
 			});
+			
+			setTimeout(loadGuestBooks, 1000);
 		}else{
 			$("#guestbooks-datalist").append(response.statusText);
 		}
