@@ -99,6 +99,38 @@ const showGuestBooks = function(){
 		});
 		
 		loadGuestBooks();
+		
+		$(function() {
+			$("#addguestbookmanual").submit(function(e){
+				e.preventDefault();
+				$("#addguestbookmanual :input").prop("disabled", true); 
+				
+				$.ajax({
+					url: "https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=insertGuestToBook",
+					type: "POST",
+					data: $(this).serialize()
+				}).done(function (response) {
+					$("#addguestbookmanual :input").prop("disabled", false);
+					
+					infotext = 'Data gagal disimpan, silahkan coba kembali.';
+					infoicon = 'error';
+					if(response.statusCode == 1){
+						infotext = 'Data berhasil disimpan';
+						infoicon = 'success';
+						$("#addguestbookmanual")[0].reset();
+					}
+					Swal.fire(
+						'',
+						infotext,
+						infoicon
+					).then((result) => {
+						if(response.statusCode == 1){
+							Fancybox.close();
+						}
+					});
+				});
+			});
+		});
 	}
 }
 
