@@ -104,7 +104,7 @@ const showGuestBooks = function(){
 			$("#addguestbookmanual").submit(function(e){
 				e.preventDefault();
 				$("#addguestbookmanual :input").prop("disabled", true); 
-				$requestSettings = {
+				var $requestSettings = {
 					"url": "https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=insertGuestToBook",
 					"method": "POST",
 					"timeout": 0,
@@ -114,7 +114,7 @@ const showGuestBooks = function(){
 					"redirect": "follow",
 					"data": $("#addguestbookmanual").serialize()
 				};
-				$.ajax($requestSettings).done(function (response) {
+				$.ajax($requestSettings).done((response) => {
 					$("#addguestbookmanual :input").prop("disabled", false);
 					infoicon = 'error';
 					if(response.statusCode == 1){
