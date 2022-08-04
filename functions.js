@@ -116,13 +116,13 @@ const showGuestBooks = function(){
 				};
 				$.ajax($requestSettings).done(function (response) {
 					$("#addguestbookmanual :input").prop("disabled", false);
-					
-					infotext = 'Data gagal disimpan, silahkan coba kembali.';
 					infoicon = 'error';
 					if(response.statusCode == 1){
-						infotext = 'Data berhasil disimpan';
 						infoicon = 'success';
 						$("#addguestbookmanual")[0].reset();
+					}
+					if(typeof response.statusText !== 'undefined'){
+						infotext = response.statusText;
 					}
 					Swal.fire(
 						'',
