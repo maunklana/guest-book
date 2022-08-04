@@ -116,7 +116,7 @@ const loadGuestBooks = function(){
 				rows.forEach( function getvalues(ourrow) {
 					//Skip header
 					if(rownum>0){
-						guestbookrows = $("<tr>");
+						guestbookrows = $(`<tr id="guest${rownum}">`);
 
 						// split line into columns
 						let columns = ourrow.split(",");
@@ -129,6 +129,10 @@ const loadGuestBooks = function(){
 					}
 					rownum++;
 				});
+				
+				$('html, body').animate({
+                    scrollTop: $(`#guest${rownum}`).offset().top
+                }, 500);
 				
 				currentGuestNum = rows.length;
 			}
