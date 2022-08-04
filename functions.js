@@ -131,8 +131,8 @@ const loadGuestBooks = function(){
 					rownum++;
 				});
 				
-				$('html, body').animate({
-                    scrollTop: $(`#guest${rownum}`).offset().top
+				$('#guestbooks-table-col').animate({
+                    scrollTop: $(`#guest${rownum-1}`).offset().top
                 }, 500);
 				
 				currentGuestNum = rows.length;
