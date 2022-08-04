@@ -107,10 +107,11 @@ const loadGuestBooks = function(){
 	$.getJSON( 'https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=getGuestBook&vc1ycvwbf6zuqyn1cf=true' ).done((response) => {
 		$("#table-loader").addClass("d-none");
 		if(response.statusCode == 1){
-			$("#guestbooks-datalist").html("");
 			// split into lines
 			let rows = response.data.split("\n");
 			if(currentGuestNum<rows.length){
+				$("#guestbooks-datalist").html("");
+				
 				// parse lines
 				rownum = 0;
 				rows.forEach( function getvalues(ourrow) {
