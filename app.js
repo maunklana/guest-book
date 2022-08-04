@@ -1,4 +1,6 @@
 $(function() {
+	$.ajaxSetup({ cache: false });
+	
 	$("#loggedin-signout").click(function(e){
 		e.preventDefault();
 		Swal.fire({
