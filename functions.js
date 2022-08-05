@@ -167,19 +167,21 @@ const loadGuestBooks = function(){
 						$.each(columns.slice(0, 3), function( i, v ) {
 							if(i == 0){
 								xdatetime = new Date(Date.parse(v));
-								v = xdatetime.getHours() + ':' + xdatetime.getMinutes() + ':' + xdatetime.getSeconds() ;
+								v = ('0' + xdatetime.getHours()).slice(-2) + ':' + ('0' + xdatetime.getMinutes()).slice(-2) + ':' + ('0' + xdatetime.getSeconds()).slice(-2) ;
 							}
 							guestbookrows.append(`<td>${v}</td>'`);
 						});
 						
 						$("#guestbooks-datalist").append(guestbookrows);
+						
+						if(rownum>=rows.length){
+							$('#guestbooks-table-col').animate({
+								scrollTop: $(`#guest${rownum-1}`).offset().top
+							}, 500);
+						}
 					}
 					rownum++;
 				});
-				
-				$('#guestbooks-table-col').animate({
-                    scrollTop: $(`#guest${rownum-1}`).offset().top
-                }, 500);
 				
 				currentGuestNum = rows.length;
 			}
