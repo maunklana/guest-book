@@ -165,6 +165,10 @@ const loadGuestBooks = function(){
 						let columns = ourrow.split(",");
 						
 						$.each(columns.slice(0, 3), function( index, value ) {
+							if(index == 0){
+								xdatetime = new Date(Date.parse('Thu Aug 04 2022 15:32:33 GMT+0700 (Waktu Indonesia Barat)'));
+								value = xdatetime.getHours() + ':' + xdatetime.getMinutes() + ':' + xdatetime.getSeconds() ;
+							}
 							guestbookrows.append(`<td>${value}</td>'`);
 						});
 						
