@@ -236,7 +236,7 @@ const loadGuestBooks = function(){
 				$("#guestbooks-datalist").html("");
 				
 				// parse lines
-				rownum = 1;
+				rownum = 0;
 				rows.forEach( function getvalues(ourrow) {
 					//Skip header
 					if(rownum>1){
