@@ -241,9 +241,9 @@ const loadGuestBooks = function(){
 						
 						$("#guestbooks-datalist").append(guestbookrows);
 						
-						if(rownum>=rows.length){
+						if(rownum>=rows.length-1){
 							$('#guestbooks-table-col').animate({
-								scrollTop: $(`#guest${rownum-1}`).offset().top
+								scrollTop: $(`#guest${rownum}`).offset().top
 							}, 500);
 						}
 					}
