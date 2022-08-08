@@ -236,10 +236,10 @@ const loadGuestBooks = function(){
 				$("#guestbooks-datalist").html("");
 				
 				// parse lines
-				rownum = 0;
+				rownum = 1;
 				rows.forEach( function getvalues(ourrow) {
 					//Skip header
-					if(rownum>0){
+					if(rownum>1){
 						guestbookrows = $(`<tr id="guest${rownum}">`);
 
 						// split line into columns
