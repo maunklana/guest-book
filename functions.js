@@ -170,7 +170,8 @@ const showGuestBooks = function(){
 							  "method": "POST",
 							  "timeout": 0,
 							  "headers": {
-								"Content-Type": "application/x-www-form-urlencoded",
+								"Content-Type": "application/x-www-form-urlencoded"
+							  }
 							  "data": {
 								"guestname": qrcodeParams.A,
 								"guestdomicile": qrcodeParams.D,
