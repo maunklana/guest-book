@@ -163,6 +163,19 @@ const showGuestBooks = function(){
 					qrcodeRegexp: /{"A":"[A-Z ]{1,}","D":"[A-Z0-9 ]{5,}","V":"\w{10,}"}/,
 					audioFeedback: true,
 					callback: function(code) {
+						Swal.fire({
+							html: '<div class="container-fluid text-center" style="overflow: hidden;"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+							width: '100%',
+							height: '100%',
+							background: 'transparent',
+							showConfirmButton: false,
+							showCloseButton: false,
+							showCancelButton: false,
+							allowOutsideClick: false,
+							allowEscapeKey: false,
+							allowEnterKey: false,
+						})
+						
 						qrcodeParams = JSON.parse(code);
 						submitQRurl = 'https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=insertGuestToBook&vc1ycvwbf6zuqyn1cf';
 						
