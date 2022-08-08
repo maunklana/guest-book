@@ -217,7 +217,8 @@ const loadGuestBooks = function(){
 		$("#table-loader").addClass("d-none");
 		if(response.statusCode == 1){
 			// split into lines
-			let rows = response.data.split("\n");
+			let rows = response.data.split("\n"),
+			totalrow = rows.length;
 			if(currentGuestNum<rows.length){
 				$("#guestbooks-datalist").html("");
 				
@@ -241,7 +242,7 @@ const loadGuestBooks = function(){
 						
 						$("#guestbooks-datalist").append(guestbookrows);
 						
-						if(rownum>=rows.length-1){
+						if(rownum>=totalrow-1){
 							$('#guestbooks-table-col').animate({
 								scrollTop: $(`#guest${rownum}`).offset().top
 							}, 500);
@@ -250,7 +251,7 @@ const loadGuestBooks = function(){
 					rownum++;
 				});
 				
-				currentGuestNum = rows.length;
+				currentGuestNum = totalrow;
 			}
 			
 			setTimeout(loadGuestBooks, 1000);
