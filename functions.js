@@ -160,7 +160,7 @@ const showGuestBooks = function(){
 					$.qrCodeReader.jsQRpath = "//asepnabila.link/qrcode-reader/dist/js/jsQR/jsQR.min.js";
 					$.qrCodeReader.beepPath = "//asepnabila.link/sound/meizu_barcode_recognize.ogg";
 					
-					$("#scan-attenderqrcode").qrCodeReader({
+					$("#scan-guestbooks").qrCodeReader({
 						qrcodeRegexp: /{"A":"[A-Z ]{1,}","D":"[A-Z0-9 ]{5,}","V":"\w{10,}"}/,
 						audioFeedback: true,
 						callback: function(code) {
