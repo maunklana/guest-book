@@ -141,15 +141,13 @@ const showGuestBooks = function(){
 					if(typeof response.statusText !== 'undefined'){
 						infotext = response.statusText;
 					}
-					Swal.fire(
-						Swal.fire({
-							icon: infoicon,
-							iconColor: '#991188',
-							title: '',
-							html: `<i class="bi ${scannedIcon}"></i> Berhasil mengisi buku tamu`,
-							confirmButtonColor: '#991188'
-						});
-					).then((result) => {
+					Swal.fire({
+						icon: infoicon,
+						iconColor: infoiconcolor,
+						title: '',
+						html: `<i class="bi ${scannedIcon}"></i> ${infotext}`,
+						confirmButtonColor: '#991188'
+					}).then((result) => {
 						if(response.statusCode == 1){
 							Fancybox.close();
 						}
