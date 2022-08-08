@@ -8,6 +8,16 @@ function parseJwt (token) {
     return JSON.parse(jsonPayload);
 };
 
+const appendscript = function(url, method = ''){
+	let s = document.createElement('script');
+	s.src = url;
+	if(['defer', 'async'].indexOf(method) >= 0){
+		s[method] = true;
+	}
+	document.body.appendChild(s);
+	return s;
+}
+
 const swallLoginPrompt = function(){
 	Swal.fire({
 		html: `	
@@ -122,23 +132,81 @@ const showGuestBooks = function(){
 				$.ajax($requestSettings).done((response) => {
 					$("#addguestbookmanual :input").prop("disabled", false);
 					infoicon = 'error';
+					infoiconcolor = '';
 					if(response.statusCode == 1){
 						infoicon = 'success';
+						infoiconcolor = '#991188';
 						$("#addguestbookmanual")[0].reset();
 					}
 					if(typeof response.statusText !== 'undefined'){
 						infotext = response.statusText;
 					}
 					Swal.fire(
-						'',
-						infotext,
-						infoicon
+						Swal.fire({
+							icon: infoicon,
+							iconColor: '#991188',
+							title: '',
+							html: `<i class="bi ${scannedIcon}"></i> Berhasil mengisi buku tamu`,
+							confirmButtonColor: '#991188'
+						});
 					).then((result) => {
 						if(response.statusCode == 1){
 							Fancybox.close();
 						}
 					});
 				});
+				
+				appendscript('//asepnabila.link/qrcode-reader/dist/js/qrcode-reader.min.js', 'defer').onload = () => {
+					$.qrCodeReader.jsQRpath = "//asepnabila.link/qrcode-reader/dist/js/jsQR/jsQR.min.js";
+					$.qrCodeReader.beepPath = "//asepnabila.link/sound/meizu_barcode_recognize.ogg";
+					
+					$("#scan-attenderqrcode").qrCodeReader({
+						qrcodeRegexp: /{"A":"[A-Z ]{1,}","D":"[A-Z0-9 ]{5,}","V":"\w{10,}"}/,
+						audioFeedback: true,
+						callback: function(code) {
+							qrcodeParams = JSON.parse(code);
+							submitQRurl = 'https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=insertGuestToBook&vc1ycvwbf6zuqyn1cf';
+							
+							var settings = {
+							  "url": submitQRurl,
+							  "method": "POST",
+							  "timeout": 0,
+							  "headers": {
+								"Content-Type": "application/x-www-form-urlencoded",
+							  "data": {
+								"guestname": qrcodeParams.A,
+								"guestdomicile": qrcodeParams.D,
+								"visitorid": qrcodeParams.V,
+								"insertmethod": "Scanned"
+							  }
+							};
+
+							$.ajax(settings).done(function (rsp) {
+								if(rsp.statusCode == 1){
+									scannedIcon = 'bi-check-circle';
+									if(rsp.exclusive == 1){
+										scannedIcon = 'bi-patch-check';
+									}
+									Swal.fire({
+										icon: 'success',
+										iconColor: '#991188',
+										title: '',
+										html: `<i class="bi ${scannedIcon}"></i> Berhasil mengisi buku tamu`,
+										confirmButtonColor: '#991188'
+									});
+									setQRisScanned(rsp.exclusive);
+								}else{
+									Swal.fire({
+										icon: 'error',
+										title: 'Oops...',
+										text: rsp.statusText,
+										confirmButtonColor: '#991188'
+									});
+								}
+							});
+						}
+					});
+				}
 			});
 		});
 	}
