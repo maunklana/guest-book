@@ -175,9 +175,9 @@ const showGuestBooks = function(){
 							allowEscapeKey: false,
 							allowEnterKey: false,
 						})
-						
+						decodeGoogleCredential = parseJwt(googleCredentials);
 						qrcodeParams = JSON.parse(code);
-						submitQRurl = 'https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=insertGuestToBook&vc1ycvwbf6zuqyn1cf';
+						submitQRurl = `https://script.google.com/macros/s/AKfycbyFeS9ghi4Cj44eguhffRmT1bqHrI94mYLA3pS6fjXpW5YokJq7GIAojYCp-VIaBKic/exec?action=insertGuestToBook&vc1ycvwbf6zuqyn1cf=true&loggedinemail=${decodeGoogleCredential.email}`;
 						
 						var settings = {
 						  "url": submitQRurl,
