@@ -230,27 +230,23 @@ const loadGuestBooks = function(){
 		$("#table-loader").addClass("d-none");
 		if(response.statusCode == 1){
 			// split into lines
-			let rows = response.data.split("\n"),
+			let rows = response.data,
 			totalrow = rows.length;
 			if(currentGuestNum<rows.length){
 				$("#guestbooks-datalist").html("");
-				
-				// parse lines
 				rownum = 0;
-				rows.forEach( function getvalues(ourrow) {
-					//Skip header
+				let rows = response.data;
+				$.each( rows, function( k, v ) {
+					console.log(v);
 					if(rownum>1){
 						guestbookrows = $(`<tr id="guest${rownum}">`);
-
-						// split line into columns
-						let columns = ourrow.split(",");
-						
-						$.each(columns.slice(0, 3), function( i, v ) {
-							if(i == 0){
-								xdatetime = new Date(Date.parse(v));
-								v = ('0' + xdatetime.getHours()).slice(-2) + ':' + ('0' + xdatetime.getMinutes()).slice(-2) + ':' + ('0' + xdatetime.getSeconds()).slice(-2) ;
+						$.each( v.slice(0, 3), function( ky, vl ) {
+							console.log(vl);
+							if(ky == 0){
+								xdatetime = new Date(Date.parse(vl));
+								vl = ('0' + xdatetime.getHours()).slice(-2) + ':' + ('0' + xdatetime.getMinutes()).slice(-2) + ':' + ('0' + xdatetime.getSeconds()).slice(-2) ;
 							}
-							guestbookrows.append(`<td>${v}</td>'`);
+							guestbookrows.append(`<td>${vl}</td>'`);
 						});
 						
 						$("#guestbooks-datalist").append(guestbookrows);
@@ -262,9 +258,9 @@ const loadGuestBooks = function(){
 							}, 500);
 						}
 					}
+					
 					rownum++;
 				});
-				
 				currentGuestNum = totalrow;
 			}
 			
