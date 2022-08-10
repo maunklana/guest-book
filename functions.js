@@ -256,6 +256,7 @@ const loadGuestBooks = function(){
 						$("#guestbooks-datalist").append(guestbookrows);
 						
 						if(rownum>=totalrow-1){
+							$('#guestbooks-table-col')[0].scrollTop = 0;
 							$('#guestbooks-table-col').animate({
 								scrollTop: $(`#guest${rownum}`).offset().top
 							}, 500);
