@@ -160,7 +160,7 @@ const showGuestBooks = function(){
 				$.qrCodeReader.beepPath = "//asepnabila.link/sound/meizu_barcode_recognize.ogg";
 				
 				$("#scan-guestbooks").qrCodeReader({
-					qrcodeRegexp: /{"A":"[A-Z ]{1,}","D":".{5,}","V":"\w{10,}"}/,
+					qrcodeRegexp: /{"A":"[\w ,']{1,}","D":".{5,}","V":"\w{10,}"}/,
 					audioFeedback: true,
 					callback: function(code) {
 						Swal.fire({
