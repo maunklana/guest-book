@@ -240,9 +240,9 @@ const loadGuestBooks = function(){
 					console.log(v);
 					if(rownum>1){
 						guestbookrows = $(`<tr id="guest${rownum}">`);
-						$.each( v.slice(0, 3), function( ky, vl ) {
+						$.each( v.slice(0, 4), function( ky, vl ) {
 							console.log(vl);
-							if(ky == 0){
+							if(ky == 1){
 								xdatetime = new Date(Date.parse(vl));
 								vl = ('0' + xdatetime.getHours()).slice(-2) + ':' + ('0' + xdatetime.getMinutes()).slice(-2) + ':' + ('0' + xdatetime.getSeconds()).slice(-2) ;
 							}
