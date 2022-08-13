@@ -238,7 +238,7 @@ const loadGuestBooks = function(){
 				let rows = response.data;
 				$.each( rows, function( k, v ) {
 					console.log(v);
-					if(rownum>1){
+					if(rownum>0){
 						guestbookrows = $(`<tr id="guest${rownum}">`);
 						$.each( v.slice(0, 4), function( ky, vl ) {
 							console.log(vl);
