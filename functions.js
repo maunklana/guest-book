@@ -160,7 +160,7 @@ const showGuestBooks = function(){
 				$.qrCodeReader.beepPath = "//asepnabila.link/sound/meizu_barcode_recognize.ogg";
 				
 				$("#scan-guestbooks").qrCodeReader({
-					qrcodeRegexp: /{"A":"[\w ,'.]{1,}","D":".{5,}","V":"\w{10,}"}/,
+					qrcodeRegexp: /{"A":"[\w ,'.]{1,}","D":".{5,}","K":"\d","V":"\w{10,}"}/,
 					audioFeedback: true,
 					callback: function(code) {
 						Swal.fire({
@@ -189,6 +189,7 @@ const showGuestBooks = function(){
 						  "data": {
 							"guestname": qrcodeParams.A,
 							"guestdomicile": qrcodeParams.D,
+							"guestcolleague": qrcodeParams.K,
 							"visitorid": qrcodeParams.V,
 							"insertmethod": "Scanned"
 						  }
