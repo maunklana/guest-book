@@ -252,8 +252,8 @@ const loadGuestBooks = function(){
 								colegueof = [
 									' - ',
 									'mempelai pria',
-									'orang tua mempelai pria',
 									'mempelai wanita',
+									'orang tua mempelai pria',
 									'orang tua mempelai wanita'
 								];
 								vl = colegueof[vl];
