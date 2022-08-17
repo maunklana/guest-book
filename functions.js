@@ -202,11 +202,12 @@ const showGuestBooks = function(){
 								if(rsp.exclusive == 1){
 									scannedIcon = 'bi-patch-check';
 								}
+								attendernum = response.guestNumber;
 								Swal.fire({
 									icon: 'success',
 									iconColor: '#991188',
 									title: '',
-									html: `<i class="bi ${scannedIcon}"></i> Berhasil mengisi buku tamu`,
+									html: `<i class="bi ${scannedIcon}"></i> ${attendernum} - Berhasil mengisi buku tamu`,
 									confirmButtonColor: '#991188'
 								});
 								setQRisScanned(rsp.exclusive);
