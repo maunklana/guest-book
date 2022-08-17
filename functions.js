@@ -248,6 +248,16 @@ const loadGuestBooks = function(){
 								xdatetime = new Date(Date.parse(vl));
 								vl = ('0' + xdatetime.getHours()).slice(-2) + ':' + ('0' + xdatetime.getMinutes()).slice(-2) + ':' + ('0' + xdatetime.getSeconds()).slice(-2) ;
 							}
+							if(ky == 4){
+								colegueof = [
+									' - ',
+									'mempelai pria',
+									'orang tua mempelai pria',
+									'mempelai wanita',
+									'orang tua mempelai wanita'
+								];
+								vl = colegueof[vl];
+							}
 							guestbookrows.append(`<td>${vl}</td>'`);
 						});
 						
