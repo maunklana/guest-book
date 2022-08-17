@@ -140,12 +140,13 @@ const showGuestBooks = function(){
 					}
 					if(typeof response.statusText !== 'undefined'){
 						infotext = response.statusText;
+						attendernum = response.guestNumber;
 					}
 					Swal.fire({
 						icon: infoicon,
 						iconColor: infoiconcolor,
 						title: '',
-						html: `<i class="bi ${scannedIcon}"></i> ${infotext}`,
+						html: (response.statusCode == 1) ? `<i class="bi bi-check-circle"></i> ${attendernum} - ${infotext}` : infotext,
 						confirmButtonColor: '#991188'
 					}).then((result) => {
 						if(response.statusCode == 1){
