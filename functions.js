@@ -210,7 +210,6 @@ const showGuestBooks = function(){
 									html: `<i class="bi ${scannedIcon}"></i> ${attendernum} - Berhasil mengisi buku tamu`,
 									confirmButtonColor: '#991188'
 								});
-								setQRisScanned(rsp.exclusive);
 							}else{
 								Swal.fire({
 									icon: 'error',
