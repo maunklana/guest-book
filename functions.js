@@ -129,27 +129,27 @@ const showGuestBooks = function(){
 				
 				$("#addguestbookmanual :input").prop("disabled", true); 
 				
-				$.ajax($requestSettings).done((response) => {
+				$.ajax($requestSettings).done((rsp) => {
 					$("#addguestbookmanual :input").prop("disabled", false);
 					infoicon = 'error';
 					infoiconcolor = '';
-					if(response.statusCode == 1){
+					if(rsp.statusCode == 1){
 						infoicon = 'success';
 						infoiconcolor = '#991188';
 						$("#addguestbookmanual")[0].reset();
 					}
-					if(typeof response.statusText !== 'undefined'){
-						infotext = response.statusText;
-						attendernum = response.guestNumber;
+					if(typeof rsp.statusText !== 'undefined'){
+						infotext = rsp.statusText;
+						attendernum = rsp.guestNumber;
 					}
 					Swal.fire({
 						icon: infoicon,
 						iconColor: infoiconcolor,
 						title: '',
-						html: (response.statusCode == 1) ? `<i class="bi bi-check-circle"></i> ${attendernum} - ${infotext}` : infotext,
+						html: (rsp.statusCode == 1) ? `<i class="bi bi-check-circle"></i> ${attendernum} - ${infotext}` : infotext,
 						confirmButtonColor: '#991188'
 					}).then((result) => {
-						if(response.statusCode == 1){
+						if(rsp.statusCode == 1){
 							Fancybox.close();
 						}
 					});
@@ -204,7 +204,7 @@ const showGuestBooks = function(){
 										if(rsp.exclusive == 1){
 											scannedIcon = 'bi-patch-check';
 										}
-										attendernum = response.guestNumber;
+										attendernum = rsp.guestNumber;
 										Swal.fire({
 											icon: 'success',
 											iconColor: '#991188',
