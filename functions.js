@@ -197,7 +197,6 @@ const showGuestBooks = function(){
 						};
 
 						$.ajax(settings).done(function (rsp) {
-							console.re.log(JSON.stringify(settings) + ' : '+ JSON.stringify(rsp));
 							if(typeof rsp != 'undefined'){
 								if(typeof rsp.statusCode != 'undefined'){
 									if(rsp.statusCode == 1){
