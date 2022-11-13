@@ -197,27 +197,52 @@ const showGuestBooks = function(){
 						};
 
 						$.ajax(settings).done(function (rsp) {
-							if(rsp.statusCode == 1){
-								scannedIcon = 'bi-check-circle';
-								if(rsp.exclusive == 1){
-									scannedIcon = 'bi-patch-check';
+							if(typeof rsp != 'undefined'){
+								if(typeof rsp.statusCode != 'undefined'){
+									if(rsp.statusCode == 1){
+										scannedIcon = 'bi-check-circle';
+										if(rsp.exclusive == 1){
+											scannedIcon = 'bi-patch-check';
+										}
+										attendernum = response.guestNumber;
+										Swal.fire({
+											icon: 'success',
+											iconColor: '#991188',
+											title: '',
+											html: `<i class="bi ${scannedIcon}"></i> ${attendernum} - Berhasil mengisi buku tamu`,
+											confirmButtonColor: '#991188'
+										});
+									}else{
+										Swal.fire({
+											icon: 'error',
+											title: 'Oops...',
+											text: rsp.statusText,
+											confirmButtonColor: '#991188'
+										});
+									}
+								}else{
+									Swal.fire({
+										icon: 'error',
+										title: 'Oops...',
+										text: JSON.stringify(rsp),
+										confirmButtonColor: '#991188'
+									});
 								}
-								attendernum = response.guestNumber;
-								Swal.fire({
-									icon: 'success',
-									iconColor: '#991188',
-									title: '',
-									html: `<i class="bi ${scannedIcon}"></i> ${attendernum} - Berhasil mengisi buku tamu`,
-									confirmButtonColor: '#991188'
-								});
 							}else{
 								Swal.fire({
 									icon: 'error',
 									title: 'Oops...',
-									text: rsp.statusText,
+									text: JSON.stringify(rsp),
 									confirmButtonColor: '#991188'
 								});
 							}
+						}).fail(function () {
+							Swal.fire({
+								icon: 'error',
+								title: 'Oops...',
+								text: 'respon server tidak valid',
+								confirmButtonColor: '#991188'
+							});
 						});
 					}
 				});
